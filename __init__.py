@@ -34,7 +34,7 @@ def on_pre_llm_call(
         from hermes_time import now as _hermes_now
 
         now = _hermes_now()
-        timestamp_line = now.strftime("%A, %B %d, %Y %H:%M:%S %Z")
+        timestamp_line = now.strftime("%A, %B %d, %Y (W%V) %H:%M:%S %Z")
 
         return {
             "context": f"[Current time: {timestamp_line}]"
