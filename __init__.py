@@ -15,14 +15,12 @@ logger = logging.getLogger(__name__)
 
 
 def on_pre_llm_call(
-    session_id: str = "",
-    task_id: str = "",
-    turn_id: str = "",
-    user_message: str = "",
-    conversation_history: list = None,
-    is_first_turn: bool = False,
-    model: str = "",
-    platform: str = "",
+    session_id: str,
+    user_message: str,
+    conversation_history: list,
+    is_first_turn: bool,
+    model: str,
+    platform: str,
     **kwargs: Any,
 ) -> dict:
     """Return current time as context to inject into the user message.
@@ -36,13 +34,10 @@ def on_pre_llm_call(
         from hermes_time import now as _hermes_now
 
         now = _hermes_now()
-        # Match the same format used in the system prompt
         timestamp_line = now.strftime("%A, %B %d, %Y %H:%M:%S %Z")
 
         return {
-            "context": (
-                f"[Current time: {timestamp_line}]"
-            )
+            "context": f"[Current time: {timestamp_line}]"
         }
     except Exception as exc:
         logger.warning("turn_timestamp plugin failed: %s", exc)
