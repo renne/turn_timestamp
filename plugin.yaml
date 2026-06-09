@@ -1,0 +1,4 @@
+name: turn_timestamp
+version: "1.0.0"
+description: "Injects the current date, time, and timezone into each turn's user message via the pre_llm_call hook. Keeps the model temporally aware without touching the cached system prompt."
+author: user
